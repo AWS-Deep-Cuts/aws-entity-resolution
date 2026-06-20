@@ -1,6 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
+# AWS CLIのページャーを無効化
+export AWS_PAGER=""
+
 # setup.shで保存した設定ファイルを読み込む
 if [[ ! -f .setup_config ]]; then
   echo "❌ Error: 設定ファイル(.setup_config)が見つかりません。" >&2
