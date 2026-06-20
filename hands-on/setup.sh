@@ -1,9 +1,6 @@
 #!/bin/bash
 set -euo pipefail
 
-# リポジトリで利用する日付データ(YYYYMMDD_HHMMSS)を取得し、ファイルに保存する
-date +%Y%m%d_%H%M%S > .date
-
 # 各種パラメータの設定
 readonly AWS_REGION=ap-northeast-1
 AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text 2>/dev/null) || {
@@ -13,6 +10,15 @@ AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text 2>/de
 readonly AWS_ACCOUNT_ID
 readonly S3_BUCKET_NAME=aws-er-handson-${AWS_ACCOUNT_ID}
 readonly GLUE_DB_NAME=aws_er_handson_db
+
+# パラメータを設定ファイルに保存
+cat > .setup_config << EOF
+AWS_REGION=${AWS_REGION}
+AWS_ACCOUNT_ID=${AWS_ACCOUNT_ID}
+S3_BUCKET_NAME=${S3_BUCKET_NAME}
+GLUE_DB_NAME=${GLUE_DB_NAME}
+SETUP_DATE=$(date +%Y%m%d_%H%M%S)
+EOF
 
 # CSVファイルの存在確認
 for csv_file in registration_data.csv lead_list.csv; do
