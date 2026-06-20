@@ -49,6 +49,13 @@ aws s3 cp lead_list.csv "s3://${S3_BUCKET_NAME}/input/lead_list/" || {
 }
 echo "✅ CSVファイルをアップロードしました"
 
+# 空のoutputフォルダを作成
+aws s3api put-object --bucket "${S3_BUCKET_NAME}" --key "output/" || {
+  echo "❌ Error: outputフォルダの作成に失敗しました。" >&2
+  exit 1
+}
+echo "✅ outputフォルダを作成しました"
+
 # Glueデータベースの作成
 if aws glue get-database --name "${GLUE_DB_NAME}" --region "${AWS_REGION}" 2>/dev/null; then
   echo "ℹ️  Glueデータベースは既に存在します: ${GLUE_DB_NAME}"
