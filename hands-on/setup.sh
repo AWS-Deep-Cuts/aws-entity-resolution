@@ -8,7 +8,7 @@ AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text 2>/de
   exit 1
 }
 readonly AWS_ACCOUNT_ID
-readonly S3_BUCKET_NAME=aws-er-handson-${AWS_ACCOUNT_ID}-$(date +%Y%m%d_%H%M%S)
+readonly S3_BUCKET_NAME=aws-er-handson-${AWS_ACCOUNT_ID}-$(date +%Y%m%d-%H%M%S)
 readonly GLUE_DB_NAME=aws_er_handson_db
 
 # パラメータを設定ファイルに保存
