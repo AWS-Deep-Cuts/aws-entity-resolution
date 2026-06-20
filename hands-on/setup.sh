@@ -8,7 +8,7 @@ AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text 2>/de
   exit 1
 }
 readonly AWS_ACCOUNT_ID
-readonly S3_BUCKET_NAME=aws-er-handson-${AWS_ACCOUNT_ID}
+readonly S3_BUCKET_NAME=aws-er-handson-${AWS_ACCOUNT_ID}-$(date +%Y%m%d_%H%M%S)
 readonly GLUE_DB_NAME=aws_er_handson_db
 
 # パラメータを設定ファイルに保存
@@ -17,7 +17,6 @@ AWS_REGION=${AWS_REGION}
 AWS_ACCOUNT_ID=${AWS_ACCOUNT_ID}
 S3_BUCKET_NAME=${S3_BUCKET_NAME}
 GLUE_DB_NAME=${GLUE_DB_NAME}
-SETUP_DATE=$(date +%Y%m%d_%H%M%S)
 EOF
 
 # CSVファイルの存在確認
