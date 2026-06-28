@@ -1,5 +1,7 @@
 このリポジトリは AWS Deep Cuts の、AWS Entity Resolution に関するハンズオンコンテンツです。
 
+AWS Entity Resolutionの解説記事(Qiita)は[こちら](https://qiita.com/kenken38/items/25a78d5e0041ca2f1cd2)
+
 # AWS Deep Cutsとは
 AWS Deep Cutsは、AWS の最新のサービスやニッチな機能、または高度にアカデミックな知識を要求するサービスなど、多くの人が知らない 『隠れた名曲 = **Deep Cuts**』 を深くまで掘り下げる技術シリーズです。
 
